@@ -1,0 +1,15 @@
+
+Individual Components:
+
+
+Clients=h1 h2 h3
+Switches=sw1 sw2 sw3
+
+Component Links:
+
+#Need to create links between components separately by specifying component numbers.
+#Ordering of Indices is important
+
+Switch-SwitchLink=(1,2) (1,3)
+Client-SwitchLink=(1,2) (2,3) (3,2)
+
