@@ -34,12 +34,22 @@ class ReadComponents(Topo):
                         for client in clients:
                             hosts.append(self.addHost(client))  
                     elif "Switches" in line:
-                        switches=line.split("Switches=",1)[1].split(" ")  
-                        for switch in switches:
-                            switches.append(self.addSwitch(switch))
+                        switch=line.split("Switches=",1)[1].split(" ")
+                        for component in switch:
+                            switches.append(self.addSwitch(component))
                     elif "Switch-SwitchLink" in line:
                         link=line.split("Switch-SwitchLink=",1)[1].split(" ")
-                        print(link,type(link))
+                        for item in link:
+                            leftSwitchindex=int(item[1:-1].split(",")[0])
+                            rightSwitchindex=int(item[1:-1].split(",")[1])
+                            self.addLink(switches[leftSwitchindex-1],switches[rightSwitchindex-1])
+                    elif "Client-SwitchLink" in line:
+                        link=line.split("Client-SwitchLink=",1)[1].split(" ")
+                        for item in link:
+                            clientindex=int(item[1:-1].split(",")[0])
+                            switchindex=int(item[1:-1].split(",")[1])
+                            self.addLink(hosts[clientindex-1],switches[switchindex-1])
+                            
                     else:
                         continue
         finally:
