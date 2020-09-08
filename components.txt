@@ -1,0 +1,15 @@
+
+Individual Components:
+
+
+Clients=h1 h2 h3
+Switches=sw1 sw2 sw3 sw4 sw5 sw6
+
+Component Links:
+
+
+#Links between each component need to be defined based on component numbers
+#Also,links for different components need to be defined separately.
+
+Switch-SwitchLink=(1,2) (2,3) (3,4) (4,5) (2,6)
+Client-SwitchLink=(1,6) (2,5) (3,6)
