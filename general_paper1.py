@@ -19,7 +19,7 @@ class ReadComponents(Topo):
         hosts=[]
         switches=[]
         
-        with open('/home/adnan/MininetTopologies/components2.txt') as filehandle:
+        with open('/home/adnan/MininetTopologies/shadow.txt') as filehandle:
                 #lines = f.read().splitlines()
                 #lines = f.readline()
                 #print(lines)
@@ -31,7 +31,8 @@ class ReadComponents(Topo):
                             for client in clients:
                                 host=client.split("(")[0]
                                 ipaddr=client.split("(")[1].replace(")","")
-                                hosts.append(self.addHost(host, ip=ipaddr))  
+                                macaddr=client.split("(")[2].replace(")","")
+                                hosts.append(self.addHost(host, ip=ipaddr, mac=macaddr))  
                         elif "Switches" in line:
                             switch=line.split("Switches=",1)[1].split(" ")
                             for component in switch:
